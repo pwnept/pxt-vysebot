@@ -1,0 +1,6 @@
+{
+  "name": "microbit-robot",
+  "dependencies": {
+    "makecode": "^1.2.0"
+  }
+}

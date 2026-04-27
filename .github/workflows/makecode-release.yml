@@ -1,0 +1,22 @@
+name: MakeCode Release
+on:
+  push:
+      tags:
+          - v**
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        actions: read
+        contents: write    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - run: npm install -g makecode
+      - run: sh mkhex.sh
+      - name: upload modified assets
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            file_pattern: "assets/*"
+            branch: main

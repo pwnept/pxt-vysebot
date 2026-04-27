@@ -1,0 +1,19 @@
+name: MakeCode Build
+on:
+  push:
+    paths-ignore:
+      - "botsim/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        actions: read
+        contents: write    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - run: npm install -g makecode
+      - run: sh mkhex.sh
